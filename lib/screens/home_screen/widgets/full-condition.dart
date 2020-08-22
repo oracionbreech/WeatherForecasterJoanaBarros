@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:weather_forecaster_joana_barros/notifiers/navigation-notifier.dart';
 import 'package:weather_forecaster_joana_barros/styles/styles.dart';
 
 import 'full-condition-item.dart';
@@ -8,6 +10,8 @@ import 'full-condition-item.dart';
 class FullCondition extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    NavigationNotifier nav = Provider.of<NavigationNotifier>(context);
+    nav.startTimeGetter(context);
     return Container(
       padding: EdgeInsets.only(left: 15.0, top: 15.0),
       margin: EdgeInsets.only(left: 15.0, top: 20.0),
@@ -21,7 +25,7 @@ class FullCondition extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            TimeOfDay.now().format(context),
+            nav.timeOfDay == null ? CircularProgressIndicator() : nav.timeOfDay,
             style: WStyles.country,
           ),
           Text(
@@ -32,9 +36,7 @@ class FullCondition extends StatelessWidget {
                 DateFormat('MMMM').format(DateTime.now()),
             style: WStyles.date,
           ),
-          SizedBox(
-            height: 20.0,
-          ),
+          SizedBox(height: WStyles.deviceHeight(context) * 0.009),
           Column(
             children: [
               FullConditionItem(15.0, FontAwesomeIcons.cloudRain, "51%"),

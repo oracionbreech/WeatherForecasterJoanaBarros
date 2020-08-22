@@ -10,7 +10,8 @@ class FullConditionItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 2.0, bottom: 2.0),
+      padding: EdgeInsets.only(
+          top: WStyles.deviceHeight(context) * 0.0009, bottom: 1.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
