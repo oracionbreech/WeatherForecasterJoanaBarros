@@ -3,10 +3,10 @@ import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_forecaster_joana_barros/notifiers/navigation-notifier.dart';
-import 'package:weather_forecaster_joana_barros/screens/home_screen/widgets/condition.dart';
-import 'package:weather_forecaster_joana_barros/screens/home_screen/widgets/country.dart';
-import 'package:weather_forecaster_joana_barros/screens/home_screen/widgets/full-condition.dart';
-import 'package:weather_forecaster_joana_barros/screens/home_screen/widgets/hourly-condition.dart';
+import 'package:weather_forecaster_joana_barros/components/condition.dart';
+import 'package:weather_forecaster_joana_barros/components/country.dart';
+import 'package:weather_forecaster_joana_barros/components/full-condition.dart';
+import 'package:weather_forecaster_joana_barros/components/hourly-condition.dart';
 import 'package:weather_forecaster_joana_barros/styles/colors.dart';
 import 'package:weather_forecaster_joana_barros/styles/styles.dart';
 
@@ -74,30 +74,59 @@ class HomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Expanded(
-                    child: FlatButton(
-                      splashColor: Colors.white,
-                      onPressed: () => {nav.setPageIndex(0)},
-                      child: FaIcon(
-                        FontAwesomeIcons.compass,
-                        color: pageIndex == 0 ? Colors.orange : Colors.grey,
+                    child: ClipRRect(
+                      borderRadius:
+                          BorderRadius.only(topLeft: Radius.circular(10.0)),
+                      child: FlatButton(
+                        color: pageIndex == 0 ? WColor.primary : Colors.white,
+                        splashColor: Colors.white,
+                        onPressed: () {
+                          nav.setPageIndex(0);
+                          nav.stop();
+                        },
+                        child: Container(
+                          alignment: Alignment.center,
+                          height: WStyles.deviceHeight(context) * 0.072,
+                          child: FaIcon(
+                            FontAwesomeIcons.compass,
+                            color: pageIndex == 0 ? Colors.white : Colors.grey,
+                          ),
+                        ),
                       ),
                     ),
                   ),
                   Expanded(
                     child: FlatButton(
+                      color: pageIndex == 1 ? WColor.primary : Colors.white,
                       onPressed: () => {nav.setPageIndex(1)},
-                      child: FaIcon(
-                        FontAwesomeIcons.mapPin,
-                        color: pageIndex == 1 ? Colors.orange : Colors.grey,
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: WStyles.deviceHeight(context) * 0.072,
+                        child: FaIcon(
+                          FontAwesomeIcons.mapPin,
+                          color: pageIndex == 1 ? Colors.white : Colors.grey,
+                        ),
                       ),
                     ),
                   ),
                   Expanded(
-                    child: FlatButton(
-                      onPressed: () => {nav.setPageIndex(2)},
-                      child: FaIcon(
-                        FontAwesomeIcons.slidersH,
-                        color: pageIndex == 2 ? Colors.orange : Colors.grey,
+                    child: ClipRRect(
+                      borderRadius:
+                          BorderRadius.only(topRight: Radius.circular(10.0)),
+                      child: FlatButton(
+                        color: pageIndex == 2 ? WColor.primary : Colors.white,
+                        onPressed: () {
+                          nav.setPageIndex(2);
+                          nav.start(context);
+                        },
+                        child: Container(
+                          alignment: Alignment.center,
+                          height: WStyles.deviceHeight(context) * 0.072,
+                          child: FaIcon(
+                            FontAwesomeIcons.slidersH,
+                            color: pageIndex == 2 ? Colors.white : Colors.grey,
+                          ),
+                        ),
                       ),
                     ),
                   )

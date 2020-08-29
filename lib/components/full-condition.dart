@@ -11,7 +11,7 @@ class FullCondition extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     NavigationNotifier nav = Provider.of<NavigationNotifier>(context);
-    nav.startTimeGetter(context);
+    nav.start(context);
     return Container(
       padding: EdgeInsets.only(left: 15.0, top: 15.0),
       margin: EdgeInsets.only(left: 15.0, top: 20.0),
@@ -24,10 +24,12 @@ class FullCondition extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            nav.timeOfDay == null ? CircularProgressIndicator() : nav.timeOfDay,
-            style: WStyles.country,
-          ),
+          nav.timeOfDay == null
+              ? CircularProgressIndicator()
+              : Text(
+                  nav.timeOfDay,
+                  style: WStyles.country,
+                ),
           Text(
             DateFormat('EEEE').format(DateTime.now()) +
                 ", " +

@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:weather_forecaster_joana_barros/notifiers/navigation-notifier.dart';
 import 'package:weather_forecaster_joana_barros/screens/home_screen/home-screen.dart';
 
-void main() {
+main(List<String> args) {
   runApp(Screen());
 }
 
