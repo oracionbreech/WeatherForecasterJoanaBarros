@@ -11,7 +11,7 @@ class FullCondition extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     NavigationNotifier nav = Provider.of<NavigationNotifier>(context);
-    nav.start(context);
+
     return Container(
       padding: EdgeInsets.only(left: 15.0, top: 15.0),
       margin: EdgeInsets.only(left: 15.0, top: 20.0),
@@ -21,35 +21,37 @@ class FullCondition extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.0),
         color: Color.fromARGB(220, 255, 255, 255),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          nav.timeOfDay == null
-              ? CircularProgressIndicator()
-              : Text(
-                  nav.timeOfDay,
-                  style: WStyles.country,
-                ),
-          Text(
-            DateFormat('EEEE').format(DateTime.now()) +
-                ", " +
-                DateTime.now().day.toString() +
-                " " +
-                DateFormat('MMMM').format(DateTime.now()),
-            style: WStyles.date,
-          ),
-          SizedBox(height: WStyles.deviceHeight(context) * 0.009),
-          Column(
-            children: [
-              FullConditionItem(15.0, FontAwesomeIcons.cloudRain, "51%"),
-              FullConditionItem(15.0, FontAwesomeIcons.wind, "12-23 Km/H"),
-              FullConditionItem(
-                  15.0, FontAwesomeIcons.locationArrow, "South-West"),
-              FullConditionItem(15.0, FontAwesomeIcons.water, "0.5-1 meter"),
-            ],
-          )
-        ],
-      ),
+      child: timeOfDay(nav, context),
+    );
+  }
+
+  Column timeOfDay(NavigationNotifier nav, BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          TimeOfDay.now().format(context),
+          style: WStyles.country,
+        ),
+        Text(
+          DateFormat('EEEE').format(DateTime.now()) +
+              ", " +
+              DateTime.now().day.toString() +
+              " " +
+              DateFormat('MMMM').format(DateTime.now()),
+          style: WStyles.date,
+        ),
+        SizedBox(height: WStyles.deviceHeight(context) * 0.009),
+        Column(
+          children: [
+            FullConditionItem(15.0, FontAwesomeIcons.cloudRain, "51%"),
+            FullConditionItem(15.0, FontAwesomeIcons.wind, "12-23 Km/H"),
+            FullConditionItem(
+                15.0, FontAwesomeIcons.locationArrow, "South-West"),
+            FullConditionItem(15.0, FontAwesomeIcons.water, "0.5-1 meter"),
+          ],
+        )
+      ],
     );
   }
 }

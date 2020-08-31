@@ -11,7 +11,7 @@ class Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (_) => NavigationNotifier(),
+        create: (_) => NavigationNotifier(context),
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           home: HomeScreen(),

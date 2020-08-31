@@ -82,7 +82,6 @@ class HomeScreen extends StatelessWidget {
                         splashColor: Colors.white,
                         onPressed: () {
                           nav.setPageIndex(0);
-                          nav.stop();
                         },
                         child: Container(
                           alignment: Alignment.center,
@@ -117,7 +116,6 @@ class HomeScreen extends StatelessWidget {
                         color: pageIndex == 2 ? WColor.primary : Colors.white,
                         onPressed: () {
                           nav.setPageIndex(2);
-                          nav.start(context);
                         },
                         child: Container(
                           alignment: Alignment.center,
